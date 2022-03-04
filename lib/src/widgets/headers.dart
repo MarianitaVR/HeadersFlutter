@@ -376,3 +376,64 @@ class _HeaderOla extends CustomPainter{
 }
 
 //------------------------------------------------------------------------------------
+
+//Header en forma de Ola
+
+class HeaderOlaGradiente extends StatelessWidget {
+  const HeaderOlaGradiente({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+      painter: _HeaderOlaGradiente(),
+      ),
+    );
+  }
+}
+
+class _HeaderOlaGradiente extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    final Rect rect = Rect.fromCircle(
+      center: Offset(10.0, 50.0),
+      radius: 180,
+    );
+    final Gradient gradiente = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: <Color>[
+        Color.fromARGB(255, 255, 138, 60),
+        Color.fromARGB(255, 252, 127, 25),
+        Color.fromARGB(255, 255, 224, 46),
+      ]
+    );
+
+    final paint = Paint()..shader = gradiente.createShader(rect); //Lapiz para dibujar 
+
+    //propiedades
+    paint.color = Color.fromARGB(255, 0, 145, 230);
+    paint.style = PaintingStyle.fill;
+    //ancho de laiz
+    paint.strokeWidth = 20;
+
+    final path = Path();
+
+    //dibujar con painr y path
+    path.lineTo(0, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30 , size.width * 0.5, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.75, size.height * 0.20 , size.width , size.height * 0.25);
+    path.lineTo(size.width, 0);
+    canvas.drawPath(path, paint);
+
+  }
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
+
+//------------------------------------------------------------------------------------

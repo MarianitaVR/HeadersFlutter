@@ -8,7 +8,7 @@ class HeadersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       //Colocar el nombre de la clase del header que se desea visulizar
-      body: HeaderDiagonalPC()
+      body: HeaderOlaGradiente()
     );
   }
 }
